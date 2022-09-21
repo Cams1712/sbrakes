@@ -4,18 +4,14 @@ import 'package:flutter/material.dart';
 
 import 'package:sbrakes/widgetsPersonalisados/estadoFreio.dart';
 
-void main() {
-  runApp(MeuApp());
-}
-
-class MeuApp extends StatefulWidget {
+class PgRecuperarSenha extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _MeuAppState();
+    return _PgRecuperarSenhaState();
   }
 }
 
-class _MeuAppState extends State<MeuApp> {
+class _PgRecuperarSenhaState extends State<PgRecuperarSenha> {
   var _index = 0;
   var _indexContrario = 1;
   var estado = ["Ativado", "Desativado"];
@@ -31,7 +27,7 @@ class _MeuAppState extends State<MeuApp> {
   }
 
   //Cosntrutor
-  _MeuAppState();
+  _PgRecuperarSenhaState();
 
   //Criando a tela do App
   @override
