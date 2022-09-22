@@ -12,6 +12,10 @@ class PgTrocarSenha extends StatefulWidget {
 }
 
 class _PgTrocarSenhaState extends State<PgTrocarSenha> {
+  void _atualizarBanco() {
+    debugPrint("teste");
+  }
+
   //Cosntrutor
   _PgTrocarSenhaState();
 
@@ -19,10 +23,6 @@ class _PgTrocarSenhaState extends State<PgTrocarSenha> {
   @override
   Widget build(BuildContext context) {
     var tela = MaterialApp(
-      /*routes: {
-        "/": (context) => PgStatusFreio(),
-        "/trocar-senha": (context) => PgTrocarSenha(),
-      },*/
       home: Scaffold(
         //Barra do app
         appBar: AppBar(
@@ -37,9 +37,67 @@ class _PgTrocarSenhaState extends State<PgTrocarSenha> {
         ),
 
         //Corpo do app
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: const [],
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                padding: const EdgeInsets.all(2),
+                child: Column(
+                  children: const [
+                    Text(
+                      "Atenção!\nA senha deve conter pelo menos 6 caracteres, sendo pelo menos: 1 maiuscula, 1 minuscula, 1 número e 1 caracter especial.",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Text(
+                "Redefinição de senha",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
+              const Text(
+                "Digite sua senha: ",
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+              ),
+              const SizedBox(
+                height: 50,
+                width: 355,
+                child: TextField(
+                  autofocus: true,
+                ),
+              ),
+              const Text(
+                "Digite novamente a sua senha: ",
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+              ),
+              const SizedBox(
+                height: 50,
+                width: 355,
+                child: TextField(),
+              ),
+              ElevatedButton(
+                  onPressed: _atualizarBanco,
+                  child: const Center(
+                    child: Text(
+                      "Trocar Senha",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                  )),
+            ],
+          ),
         ),
 
         //Criando a navegação lateral do app
@@ -47,12 +105,32 @@ class _PgTrocarSenhaState extends State<PgTrocarSenha> {
           child: ListView(
             children: [
               //Colocando as paginas que o usuario pode clicar
+              const UserAccountsDrawerHeader(
+                accountName: Text(
+                  "Fulano da Silva",
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
+                ),
+                accountEmail: Text(
+                  "fulanoDaSilva@gmail.com",
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                currentAccountPicture: CircleAvatar(
+                  radius: 40,
+                  backgroundImage: NetworkImage(
+                      "https://img.freepik.com/fotos-premium/cachorrinho-fofo-de-spitz-pomeranian-deitado-no-fundo-amarelo-brilhante_253512-22.jpg?w=2000"),
+                ),
+              ),
+
+              //Colocando as paginas que o usuario pode clicar
               Builder(
                 builder: (context) => ListTile(
-                  title: const Text("Página inicial"),
-                  trailing: const Icon(Icons.info),
+                  title: const Text("Home"),
+                  trailing: const Icon(Icons.home),
                   onTap: () {
-                    debugPrint("Entrou PgInicial1");
                     var n = Navegacao();
                     n.paraPGStatusFreio(context);
                   },
@@ -60,10 +138,9 @@ class _PgTrocarSenhaState extends State<PgTrocarSenha> {
               ),
               Builder(
                 builder: (context) => ListTile(
-                  title: const Text("Página do usuário"),
-                  trailing: const Icon(Icons.supervised_user_circle_outlined),
+                  title: const Text("Trocar Senha"),
+                  trailing: const Icon(Icons.password_outlined),
                   onTap: () {
-                    debugPrint("Entrou PgUsuario1");
                     var n = Navegacao();
                     n.paraPGTrocarSenha(context);
                   },

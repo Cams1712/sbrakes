@@ -21,10 +21,6 @@ class _PgStatusFreioState extends State<PgStatusFreio> {
   @override
   Widget build(BuildContext context) {
     var tela = MaterialApp(
-      /*routes: {
-        "/": (context) => PgStatusFreio(),
-        "/trocar-senha": (context) => PgTrocarSenha(),
-      },*/
       home: Scaffold(
           body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

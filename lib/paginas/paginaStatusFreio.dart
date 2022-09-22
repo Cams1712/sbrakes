@@ -98,13 +98,34 @@ class _PgStatusFreioState extends State<PgStatusFreio> {
         drawer: Drawer(
           child: ListView(
             children: [
+              //Criando a parte de cima que mostra os dados do usuario
+              //Mudar dados para os dados dos usuarios
+              const UserAccountsDrawerHeader(
+                accountName: Text(
+                  "Fulano da Silva",
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
+                ),
+                accountEmail: Text(
+                  "fulanoDaSilva@gmail.com",
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                currentAccountPicture: CircleAvatar(
+                  radius: 40,
+                  backgroundImage: NetworkImage(
+                      "https://img.freepik.com/fotos-premium/cachorrinho-fofo-de-spitz-pomeranian-deitado-no-fundo-amarelo-brilhante_253512-22.jpg?w=2000"),
+                ),
+              ),
+
               //Colocando as paginas que o usuario pode clicar
               Builder(
                 builder: (context) => ListTile(
-                  title: const Text("Página inicial"),
-                  trailing: const Icon(Icons.info),
+                  title: const Text("Home"),
+                  trailing: const Icon(Icons.home),
                   onTap: () {
-                    debugPrint("Entrou PgInicial1");
                     var n = Navegacao();
                     n.paraPGStatusFreio(context);
                   },
@@ -112,10 +133,9 @@ class _PgStatusFreioState extends State<PgStatusFreio> {
               ),
               Builder(
                 builder: (context) => ListTile(
-                  title: const Text("Página do usuário"),
-                  trailing: const Icon(Icons.supervised_user_circle_outlined),
+                  title: const Text("Trocar Senha"),
+                  trailing: const Icon(Icons.password_outlined),
                   onTap: () {
-                    debugPrint("Entrou PgUsuario1");
                     var n = Navegacao();
                     n.paraPGTrocarSenha(context);
                   },
