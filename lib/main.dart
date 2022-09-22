@@ -36,13 +36,67 @@ class _PgUsuarioState extends State<PgUsuario> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            const Text("Funcionário da Silva"),
-            Row(
-              children: const <Widget>[
-                //Tirar quando colocar o num do banco
-                Text("Credencial: "),
-                Text("XXXXXXXXXX"),
-              ],
+            Container(
+              padding: const EdgeInsets.all(32),
+              child: Column(
+                //Faz com que o texto inicie no mesmo lugar que o de baixo
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const Text(
+                    "Funcionário da Silva",
+                    style: TextStyle(
+                      fontSize: 30,
+                    ),
+                  ),
+                  Row(
+                    children: const <Widget>[
+                      //Tirar quando colocar o num do banco
+                      Text(
+                        "Credencial: ",
+                        style: TextStyle(
+                          fontSize: 25,
+                        ),
+                      ),
+                      //Colocar a credencial do funcionário
+                      Text(
+                        "XXXXXXXXXX",
+                        style: TextStyle(
+                          fontSize: 25,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            //Colocando a imagem do funcionário
+            const Image(
+              image: NetworkImage(
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg", //Trocar imag pela do banco
+              ),
+              height: 150,
+              width: 200,
+            ),
+            const TextField(
+              readOnly: true,
+              enabled: false,
+              decoration: InputDecoration(
+                hintText: "Teste@gmail.com",
+                contentPadding: EdgeInsets.all(10),
+                enabledBorder: InputBorder.none,
+                icon: Icon(Icons.email_outlined),
+              ),
+            ),
+            const TextField(
+              readOnly: true,
+              enabled: false,
+              decoration: InputDecoration(
+                hintText: "Teste@gmail.com",
+                contentPadding: EdgeInsets.all(10),
+                enabledBorder: InputBorder.none,
+                icon: Icon(Icons.key),
+              ),
             ),
           ],
         ),
