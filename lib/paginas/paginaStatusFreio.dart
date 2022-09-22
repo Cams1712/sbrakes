@@ -120,7 +120,7 @@ class _PgStatusFreioState extends State<PgStatusFreio> {
                   onTap: () {
                     debugPrint("Entrou PgUsuario1");
                     var n = Navegacao();
-                    n.paraPGUsuario(context);
+                    n.paraPGTrocarSenha(context);
                     debugPrint("Entrou PgUsuario2");
                     Navigator.of(context).pop();
                     debugPrint("Entrou PgUsuario3");

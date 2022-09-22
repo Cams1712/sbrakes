@@ -2,18 +2,33 @@
 
 import 'package:flutter/material.dart';
 
-void main() => runApp(PgUsuario());
+import 'package:sbrakes/widgetsPersonalisados/estadoFreio.dart';
+import 'package:sbrakes/navegacao/navegacao.dart';
 
-class PgUsuario extends StatefulWidget {
+class PgStatusFreio extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _PgUsuarioState();
+    return _PgStatusFreioState();
   }
 }
 
-class _PgUsuarioState extends State<PgUsuario> {
+class _PgStatusFreioState extends State<PgStatusFreio> {
+  var _index = 0;
+  var _indexContrario = 1;
+  var estado = ["Ativado", "Desativado"];
+  var _estadoContrario = ["ativar", "desativar"];
+
+  void _mudancaEstado() {
+    setState(() {
+      debugPrint("$_index");
+      _index == 1 ? _indexContrario++ : _indexContrario--;
+      _index == 1 ? _index-- : _index++;
+    });
+    debugPrint("$_index");
+  }
+
   //Cosntrutor
-  _PgUsuarioState();
+  _PgStatusFreioState();
 
   //Criando a tela do App
   @override
@@ -36,66 +51,44 @@ class _PgUsuarioState extends State<PgUsuario> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Container(
-              padding: const EdgeInsets.all(32),
-              child: Column(
-                //Faz com que o texto inicie no mesmo lugar que o de baixo
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const Text(
-                    "Funcionário da Silva",
-                    style: TextStyle(
-                      fontSize: 30,
-                    ),
-                  ),
-                  Row(
-                    children: const <Widget>[
-                      //Tirar quando colocar o num do banco
-                      Text(
-                        "Credencial: ",
-                        style: TextStyle(
-                          fontSize: 25,
-                        ),
-                      ),
-                      //Colocar a credencial do funcionário
-                      Text(
-                        "XXXXXXXXXX",
-                        style: TextStyle(
-                          fontSize: 25,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+            const Center(
+              child: Text(
+                "Informações do sistema",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
+            ),
+            const Center(
+              child: Text(
+                "O freio está: ",
+                style: TextStyle(
+                  fontSize: 25,
+                ),
               ),
             ),
 
-            //Colocando a imagem do funcionário
-            const Image(
-              image: NetworkImage(
-                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg", //Trocar imag pela do banco
-              ),
-              height: 150,
-              width: 200,
+            //Mostrndo o estado do freio
+            Center(
+              child: EstadoFreio(estado[_index]),
             ),
-            const TextField(
-              readOnly: true,
-              enabled: false,
-              decoration: InputDecoration(
-                hintText: "Teste@gmail.com",
-                contentPadding: EdgeInsets.all(10),
-                enabledBorder: InputBorder.none,
-                icon: Icon(Icons.email_outlined),
-              ),
-            ),
-            const TextField(
-              readOnly: true,
-              enabled: false,
-              decoration: InputDecoration(
-                hintText: "Teste@gmail.com",
-                contentPadding: EdgeInsets.all(10),
-                enabledBorder: InputBorder.none,
-                icon: Icon(Icons.key),
+
+            //Criando o btn de ativação/desativação do freio
+            Center(
+              child: SizedBox(
+                height: 60,
+                width: 300,
+                child: ElevatedButton(
+                  onPressed: _mudancaEstado,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    textStyle: const TextStyle(
+                      fontSize: 25,
+                    ),
+                  ),
+                  child: Text(
+                      "Clique aqui para ${_estadoContrario[_indexContrario]} o freio"),
+                ),
               ),
             ),
           ],
@@ -104,16 +97,36 @@ class _PgUsuarioState extends State<PgUsuario> {
         //Criando a navegação lateral do app
         drawer: Drawer(
           child: ListView(
-            children: const [
+            children: [
               //Colocando as paginas que o usuario pode clicar
-              ListTile(
-                title: Text("Página inicial"),
-                trailing: Icon(Icons.info),
+              Builder(
+                builder: (context) => ListTile(
+                  title: const Text("Página inicial"),
+                  trailing: const Icon(Icons.info),
+                  onTap: () {
+                    debugPrint("Entrou PgInicial1");
+                    var n = Navegacao();
+                    n.paraPGStatusFreio(context);
+                    debugPrint("Entrou PgInicial2");
+                    Navigator.of(context).pop();
+                    debugPrint("Entrou PgInicial3");
+                  },
+                ),
               ),
-              ListTile(
-                title: Text("Página do usuário"),
-                trailing: Icon(Icons.supervised_user_circle_outlined),
-              )
+              Builder(
+                builder: (context) => ListTile(
+                  title: const Text("Página do usuário"),
+                  trailing: const Icon(Icons.supervised_user_circle_outlined),
+                  onTap: () {
+                    debugPrint("Entrou PgUsuario1");
+                    var n = Navegacao();
+                    n.paraPGTrocarSenha(context);
+                    debugPrint("Entrou PgUsuario2");
+                    Navigator.of(context).pop();
+                    debugPrint("Entrou PgUsuario3");
+                  },
+                ),
+              ),
             ],
           ),
         ),

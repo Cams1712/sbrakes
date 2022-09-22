@@ -3,7 +3,6 @@ import 'package:sbrakes/paginas/paginaLogin.dart';
 import 'package:sbrakes/paginas/paginaRecuperarSenha.dart';
 import 'package:sbrakes/paginas/paginaStatusFreio.dart';
 import 'package:sbrakes/paginas/paginaTrocarSenha.dart';
-import 'package:sbrakes/paginas/paginaUsuario.dart';
 
 class Navegacao {
   Navegacao();
@@ -33,13 +32,6 @@ class Navegacao {
         context,
         MaterialPageRoute(
           builder: (context) => PgTrocarSenha(),
-        ),
-      );
-
-  void paraPGUsuario(BuildContext context) => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => PgUsuario(),
         ),
       );
 }
