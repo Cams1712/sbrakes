@@ -2,8 +2,6 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:sbrakes/widgetsPersonalisados/estadoFreio.dart';
-
 class PgUsuario extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -12,20 +10,6 @@ class PgUsuario extends StatefulWidget {
 }
 
 class _PgUsuarioState extends State<PgUsuario> {
-  var _index = 0;
-  var _indexContrario = 1;
-  var estado = ["Ativado", "Desativado"];
-  var _estadoContrario = ["ativar", "desativar"];
-
-  void _mudancaEstado() {
-    setState(() {
-      debugPrint("$_index");
-      _index == 1 ? _indexContrario++ : _indexContrario--;
-      _index == 1 ? _index-- : _index++;
-    });
-    debugPrint("$_index");
-  }
-
   //Cosntrutor
   _PgUsuarioState();
 
@@ -34,6 +18,7 @@ class _PgUsuarioState extends State<PgUsuario> {
   Widget build(BuildContext context) {
     var tela = MaterialApp(
       home: Scaffold(
+        //Barra do app
         appBar: AppBar(
           title: const Text(
             "Sbrake",
@@ -44,48 +29,18 @@ class _PgUsuarioState extends State<PgUsuario> {
           ),
           backgroundColor: Colors.black,
         ),
+
+        //Corpo do app
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            const Center(
-              child: Text(
-                "Informações do sistema",
-                style: TextStyle(
-                  fontSize: 30,
-                ),
-              ),
-            ),
-            const Center(
-              child: Text(
-                "O freio está: ",
-                style: TextStyle(
-                  fontSize: 25,
-                ),
-              ),
-            ),
-
-            //Mostrndo o estado do freio
-            Center(
-              child: EstadoFreio(estado[_index]),
-            ),
-
-            //Criando o btn de ativação/desativação do freio
-            Center(
-              child: SizedBox(
-                height: 60,
-                width: 300,
-                child: ElevatedButton(
-                  onPressed: _mudancaEstado,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    textStyle: const TextStyle(
-                      fontSize: 25,
-                    ),
-                  ),
-                  child: Text(
-                      "Clique aqui para ${_estadoContrario[_indexContrario]} o freio"),
-                ),
-              ),
+            const Text("Funcionário da Silva"),
+            Row(
+              children: const <Widget>[
+                //Tirar quando colocar o num do banco
+                Text("Credencial: "),
+                Text("XXXXXXXXXX"),
+              ],
             ),
           ],
         ),

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:sbrakes/widgetsPersonalisados/estadoFreio.dart';
+import 'package:sbrakes/navegacao/navegacao.dart';
 
 class PgStatusFreio extends StatefulWidget {
   @override
@@ -34,6 +35,7 @@ class _PgStatusFreioState extends State<PgStatusFreio> {
   Widget build(BuildContext context) {
     var tela = MaterialApp(
       home: Scaffold(
+        //Barra do app
         appBar: AppBar(
           title: const Text(
             "Sbrake",
@@ -44,6 +46,8 @@ class _PgStatusFreioState extends State<PgStatusFreio> {
           ),
           backgroundColor: Colors.black,
         ),
+
+        //Corpo do app
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -93,16 +97,36 @@ class _PgStatusFreioState extends State<PgStatusFreio> {
         //Criando a navegação lateral do app
         drawer: Drawer(
           child: ListView(
-            children: const [
+            children: [
               //Colocando as paginas que o usuario pode clicar
-              ListTile(
-                title: Text("Página inicial"),
-                trailing: Icon(Icons.info),
+              Builder(
+                builder: (context) => ListTile(
+                  title: const Text("Página inicial"),
+                  trailing: const Icon(Icons.info),
+                  onTap: () {
+                    debugPrint("Entrou PgInicial1");
+                    var n = Navegacao();
+                    n.paraPGStatusFreio(context);
+                    debugPrint("Entrou PgInicial2");
+                    Navigator.of(context).pop();
+                    debugPrint("Entrou PgInicial3");
+                  },
+                ),
               ),
-              ListTile(
-                title: Text("Página do usuário"),
-                trailing: Icon(Icons.supervised_user_circle_outlined),
-              )
+              Builder(
+                builder: (context) => ListTile(
+                  title: const Text("Página do usuário"),
+                  trailing: const Icon(Icons.supervised_user_circle_outlined),
+                  onTap: () {
+                    debugPrint("Entrou PgUsuario1");
+                    var n = Navegacao();
+                    n.paraPGUsuario(context);
+                    debugPrint("Entrou PgUsuario2");
+                    Navigator.of(context).pop();
+                    debugPrint("Entrou PgUsuario3");
+                  },
+                ),
+              ),
             ],
           ),
         ),

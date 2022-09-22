@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:sbrakes/widgetsPersonalisados/estadoFreio.dart';
+import 'package:sbrakes/navegacao/navegacao.dart';
 
 void main() {
   runApp(MeuApp());
@@ -97,16 +98,36 @@ class _MeuAppState extends State<MeuApp> {
         //Criando a navegação lateral do app
         drawer: Drawer(
           child: ListView(
-            children: const [
+            children: [
               //Colocando as paginas que o usuario pode clicar
-              ListTile(
-                title: Text("Página inicial"),
-                trailing: Icon(Icons.info),
+              Builder(
+                builder: (context) => ListTile(
+                  title: const Text("Página inicial"),
+                  trailing: const Icon(Icons.info),
+                  onTap: () {
+                    debugPrint("Entrou PgInicial1");
+                    var n = Navegacao();
+                    n.paraPGStatusFreio(context);
+                    debugPrint("Entrou PgInicial2");
+                    Navigator.of(context).pop();
+                    debugPrint("Entrou PgInicial3");
+                  },
+                ),
               ),
-              ListTile(
-                title: Text("Página do usuário"),
-                trailing: Icon(Icons.supervised_user_circle_outlined),
-              )
+              Builder(
+                builder: (context) => ListTile(
+                  title: const Text("Página do usuário"),
+                  trailing: const Icon(Icons.supervised_user_circle_outlined),
+                  onTap: () {
+                    debugPrint("Entrou PgUsuario1");
+                    var n = Navegacao();
+                    n.paraPGUsuario(context);
+                    debugPrint("Entrou PgUsuario2");
+                    Navigator.of(context).pop();
+                    debugPrint("Entrou PgUsuario3");
+                  },
+                ),
+              ),
             ],
           ),
         ),
