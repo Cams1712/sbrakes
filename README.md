@@ -18,3 +18,6 @@ samples, guidance on mobile development, and a full API reference.
 
 Página que fala sobre os drawers (navegação lateral):
 https://www.macoratti.net/19/10/flut_drawer1.htm
+
+Página que fala sobre layout:
+https://medium.com/flutter-comunidade-br/flutter-lineto-quadraticbezierto-34a880afa1ef
