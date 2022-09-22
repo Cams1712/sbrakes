@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:sbrakes/widgetsPersonalisados/estadoFreio.dart';
 import 'package:sbrakes/navegacao/navegacao.dart';
 
+main() => runApp(PgStatusFreio());
+
 class PgStatusFreio extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -20,11 +22,9 @@ class _PgStatusFreioState extends State<PgStatusFreio> {
 
   void _mudancaEstado() {
     setState(() {
-      debugPrint("$_index");
       _index == 1 ? _indexContrario++ : _indexContrario--;
       _index == 1 ? _index-- : _index++;
     });
-    debugPrint("$_index");
   }
 
   //Cosntrutor
@@ -107,9 +107,6 @@ class _PgStatusFreioState extends State<PgStatusFreio> {
                     debugPrint("Entrou PgInicial1");
                     var n = Navegacao();
                     n.paraPGStatusFreio(context);
-                    debugPrint("Entrou PgInicial2");
-                    Navigator.of(context).pop();
-                    debugPrint("Entrou PgInicial3");
                   },
                 ),
               ),
@@ -121,9 +118,6 @@ class _PgStatusFreioState extends State<PgStatusFreio> {
                     debugPrint("Entrou PgUsuario1");
                     var n = Navegacao();
                     n.paraPGTrocarSenha(context);
-                    debugPrint("Entrou PgUsuario2");
-                    Navigator.of(context).pop();
-                    debugPrint("Entrou PgUsuario3");
                   },
                 ),
               ),
