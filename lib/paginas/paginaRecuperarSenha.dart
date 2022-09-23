@@ -19,60 +19,79 @@ class _PgRecuperarSenhaState extends State<PgRecuperarSenha> {
   @override
   Widget build(BuildContext context) {
     var tela = MaterialApp(
-      /*routes: {
-        "/": (context) => PgStatusFreio(),
-        "/trocar-senha": (context) => PgTrocarSenha(),
-      },*/
       home: Scaffold(
-        //Barra do app
-        appBar: AppBar(
-          title: const Text(
-            "Sbrake",
-            style: TextStyle(
-              fontSize: 50,
-              color: Color.fromARGB(255, 255, 255, 255),
+          //Barra do app
+          appBar: AppBar(
+            //Colocando o icone de voltar na pag
+            leading: IconButton(
+              onPressed: () {
+                var n = Navegacao();
+                Navigator.pop(context);
+                n.paraPGLogin(context);
+              },
+              icon: const Icon(Icons.arrow_back_rounded),
             ),
-          ),
-          backgroundColor: Colors.black,
-        ),
-
-        //Corpo do app
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: const [],
-        ),
-
-        //Criando a navegação lateral do app
-        drawer: Drawer(
-          child: ListView(
-            children: [
-              //Colocando as paginas que o usuario pode clicar
-              Builder(
-                builder: (context) => ListTile(
-                  title: const Text("Página inicial"),
-                  trailing: const Icon(Icons.info),
-                  onTap: () {
-                    debugPrint("Entrou PgInicial1");
-                    var n = Navegacao();
-                    n.paraPGStatusFreio(context);
-                  },
-                ),
+            title: const Text(
+              "Sbrake",
+              style: TextStyle(
+                fontSize: 50,
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
-              Builder(
-                builder: (context) => ListTile(
-                  title: const Text("Página do usuário"),
-                  trailing: const Icon(Icons.supervised_user_circle_outlined),
-                  onTap: () {
-                    debugPrint("Entrou PgUsuario1");
-                    var n = Navegacao();
-                    n.paraPGTrocarSenha(context);
-                  },
-                ),
-              ),
-            ],
+            ),
+            backgroundColor: Colors.black,
           ),
-        ),
-      ),
+
+          //Corpo do app
+          body: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                const Text(
+                  "Recupere sua senha",
+                  style: TextStyle(fontSize: 50),
+                ),
+                const Text(
+                  "Para recuperar sua senha coloque o seu email cadastrado na empresa, dessa forma você receberá sua nova senha em alguns momentos:",
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
+                ),
+                //Criando o input de dados
+                const TextField(
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    hintText: "Digite seu e-mail",
+                    contentPadding: EdgeInsets.all(10),
+                  ),
+                ),
+
+                //Criando o botão de enviar
+                SizedBox(
+                  height: 50,
+                  width: 150,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      var n = Navegacao();
+                      Navigator.pop(context);
+                      n.paraPGLogin(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                    ),
+                    child: const Text(
+                      "Enviar",
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )),
     );
 
     return tela;

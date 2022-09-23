@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_final_fields, use_key_in_widget_constructors, file_names
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
-import 'package:sbrakes/widgetsPersonalisados/estadoFreio.dart';
+import 'package:sbrakes/navegacao/navegacao.dart';
 
 class PgLogin extends StatefulWidget {
   @override
@@ -12,18 +12,20 @@ class PgLogin extends StatefulWidget {
 }
 
 class _PgLoginState extends State<PgLogin> {
-  var _index = 0;
-  var _indexContrario = 1;
-  var estado = ["Ativado", "Desativado"];
-  var _estadoContrario = ["ativar", "desativar"];
-
-  void _mudancaEstado() {
-    setState(() {
-      debugPrint("$_index");
-      _index == 1 ? _indexContrario++ : _indexContrario--;
-      _index == 1 ? _index-- : _index++;
-    });
-    debugPrint("$_index");
+  //Criando um text span para fazer o link de esqueceu a senha
+  TextSpan _buildLink(
+      {required BuildContext context,
+      required String title,
+      required VoidCallback onTap}) {
+    return TextSpan(
+      text: title,
+      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+            fontSize: 15,
+            color: Colors.blue.shade900,
+          ),
+      //reconhecedor de gestos
+      recognizer: TapGestureRecognizer()..onTap = onTap,
+    );
   }
 
   //Cosntrutor
@@ -34,79 +36,100 @@ class _PgLoginState extends State<PgLogin> {
   Widget build(BuildContext context) {
     var tela = MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Sbrake",
-            style: TextStyle(
-              fontSize: 50,
-              color: Color.fromARGB(255, 255, 255, 255),
-            ),
-          ),
-          backgroundColor: Colors.black,
-        ),
-        body: Column(
+          body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            const Center(
-              child: Text(
-                "Informações do sistema",
-                style: TextStyle(
-                  fontSize: 30,
-                ),
-              ),
-            ),
-            const Center(
-              child: Text(
-                "O freio está: ",
-                style: TextStyle(
-                  fontSize: 25,
-                ),
-              ),
-            ),
-
-            //Mostrndo o estado do freio
-            Center(
-              child: EstadoFreio(estado[_index]),
-            ),
-
-            //Criando o btn de ativação/desativação do freio
-            Center(
-              child: SizedBox(
-                height: 60,
-                width: 300,
-                child: ElevatedButton(
-                  onPressed: _mudancaEstado,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    textStyle: const TextStyle(
-                      fontSize: 25,
-                    ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  "Login",
+                  style: TextStyle(
+                    fontSize: 50,
                   ),
-                  child: Text(
-                      "Clique aqui para ${_estadoContrario[_indexContrario]} o freio"),
+                ),
+                Divider(
+                  thickness: 3,
+                  color: Colors.black,
+                ),
+                Text(
+                  "Faça o Login para poder obter acesso ao menu de ferramentas",
+                  style: TextStyle(
+                    fontSize: 23,
+                  ),
+                ),
+              ],
+            ),
+
+            //Inputs
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const Text(
+                  "Digite sua senha:\n",
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
+                ),
+                const TextField(
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    hintText: "Digite seu e-mail",
+                    contentPadding: EdgeInsets.all(10),
+                  ),
+                ),
+                const Text(
+                  "\nDigite sua senha:\n",
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
+                ),
+                const TextField(
+                  decoration: InputDecoration(
+                    hintText: "Digite sua senha",
+                    contentPadding: EdgeInsets.all(10),
+                  ),
+                ),
+
+                //Link de esqueceu a senha
+                RichText(
+                  text: _buildLink(
+                    context: context,
+                    title: "\nEsqueceu sua senha?",
+                    onTap: () {
+                      var n = Navegacao();
+                      Navigator.pop(context);
+                      n.paraPGRecuperarSenha(context);
+                    },
+                  ),
+                ),
+              ],
+            ),
+
+            //Botão de entrar
+            ElevatedButton(
+              onPressed: () {
+                var n = Navegacao();
+                Navigator.pop(context);
+                n.paraPGStatusFreio(context);
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+                minimumSize: const Size(200, 50),
+              ),
+              child: const Text(
+                "Entrar",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
                 ),
               ),
             ),
           ],
         ),
-
-        //Criando a navegação lateral do app
-        drawer: Drawer(
-          child: ListView(
-            children: const [
-              //Colocando as paginas que o usuario pode clicar
-              ListTile(
-                title: Text("Página inicial"),
-                trailing: Icon(Icons.info),
-              ),
-              ListTile(
-                title: Text("Página do usuário"),
-                trailing: Icon(Icons.supervised_user_circle_outlined),
-              )
-            ],
-          ),
-        ),
-      ),
+      )),
     );
 
     return tela;

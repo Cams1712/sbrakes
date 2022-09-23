@@ -20,6 +20,7 @@ class _PgStatusFreioState extends State<PgStatusFreio> {
   var estado = ["Ativado", "Desativado"];
   var _estadoContrario = ["ativar", "desativar"];
 
+  //Muda o indice
   void _mudancaEstado() {
     setState(() {
       _index == 1 ? _indexContrario++ : _indexContrario--;
@@ -98,8 +99,7 @@ class _PgStatusFreioState extends State<PgStatusFreio> {
         drawer: Drawer(
           child: ListView(
             children: [
-              //Criando a parte de cima que mostra os dados do usuario
-              //Mudar dados para os dados dos usuarios
+              //Colocando os dados do usuário no menu lateral
               const UserAccountsDrawerHeader(
                 accountName: Text(
                   "Fulano da Silva",

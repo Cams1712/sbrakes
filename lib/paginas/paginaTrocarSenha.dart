@@ -12,7 +12,9 @@ class PgTrocarSenha extends StatefulWidget {
 }
 
 class _PgTrocarSenhaState extends State<PgTrocarSenha> {
+  //Função que pucha os dados do banco
   void _atualizarBanco() {
+    //Colocar banco de dados
     debugPrint("teste");
   }
 
@@ -62,6 +64,8 @@ class _PgTrocarSenhaState extends State<PgTrocarSenha> {
                   fontSize: 30,
                 ),
               ),
+
+              //Inputs
               const Text(
                 "Digite sua senha: ",
                 style: TextStyle(
@@ -81,6 +85,8 @@ class _PgTrocarSenhaState extends State<PgTrocarSenha> {
                   fontSize: 25,
                 ),
               ),
+
+              //Botão de redefinir
               const SizedBox(
                 height: 50,
                 width: 355,
@@ -104,7 +110,7 @@ class _PgTrocarSenhaState extends State<PgTrocarSenha> {
         drawer: Drawer(
           child: ListView(
             children: [
-              //Colocando as paginas que o usuario pode clicar
+              //Colocando os dados do usuário no menu lateral
               const UserAccountsDrawerHeader(
                 accountName: Text(
                   "Fulano da Silva",

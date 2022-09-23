@@ -30,7 +30,7 @@ class _PgStatusFreioState extends State<PgStatusFreio> {
               builder: (context) => ElevatedButton(
                 onPressed: () {
                   var n = Navegacao();
-                  n.paraPGStatusFreio(context);
+                  n.paraPGLogin(context);
                 },
                 child: const Text("Entrar"),
               ),
