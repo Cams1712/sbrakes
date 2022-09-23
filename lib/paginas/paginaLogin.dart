@@ -68,7 +68,7 @@ class _PgLoginState extends State<PgLogin> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const Text(
-                  "Digite sua senha:\n",
+                  "Digite seu Login:\n",
                   style: TextStyle(
                     fontSize: 25,
                   ),

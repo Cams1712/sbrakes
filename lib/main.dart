@@ -22,22 +22,23 @@ class _PgStatusFreioState extends State<PgStatusFreio> {
   Widget build(BuildContext context) {
     var tela = MaterialApp(
       home: Scaffold(
-          body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Center(
-            child: Builder(
-              builder: (context) => ElevatedButton(
-                onPressed: () {
-                  var n = Navegacao();
-                  n.paraPGLogin(context);
-                },
-                child: const Text("Entrar"),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Builder(
+                builder: (context) => ElevatedButton(
+                  onPressed: () {
+                    var n = Navegacao();
+                    n.paraPGLogin(context);
+                  },
+                  child: const Text("Entrar"),
+                ),
               ),
-            ),
+            ],
           ),
-        ],
-      )),
+        ),
+      ),
     );
 
     return tela;
