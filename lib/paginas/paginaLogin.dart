@@ -1,8 +1,14 @@
 // ignore_for_file: prefer_final_fields, use_key_in_widget_constructors, file_names
-
+import 'dart:async';
+import 'package:flutter/widgets.dart';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:sbrakes/navegacao/navegacao.dart';
+
+import 'package:sbrakes/database/database.dart';
+import 'package:sbrakes/navegation/navegacao.dart';
+import 'package:sbrakes/main.dart';
 
 class PgLogin extends StatefulWidget {
   @override
@@ -27,6 +33,9 @@ class _PgLoginState extends State<PgLogin> {
       recognizer: TapGestureRecognizer()..onTap = onTap,
     );
   }
+
+  final txemail = TextEditingController();
+  final txsenha = TextEditingController();
 
   //Cosntrutor
   _PgLoginState();
@@ -73,9 +82,10 @@ class _PgLoginState extends State<PgLogin> {
                     fontSize: 25,
                   ),
                 ),
-                const TextField(
+                TextField(
                   autofocus: true,
-                  decoration: InputDecoration(
+                  controller: txemail,
+                  decoration: const InputDecoration(
                     hintText: "Digite seu e-mail",
                     contentPadding: EdgeInsets.all(10),
                   ),
@@ -86,8 +96,9 @@ class _PgLoginState extends State<PgLogin> {
                     fontSize: 25,
                   ),
                 ),
-                const TextField(
-                  decoration: InputDecoration(
+                TextField(
+                  controller: txsenha,
+                  decoration: const InputDecoration(
                     hintText: "Digite sua senha",
                     contentPadding: EdgeInsets.all(10),
                   ),
@@ -110,7 +121,10 @@ class _PgLoginState extends State<PgLogin> {
 
             //Botão de entrar
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                /*
+                DataBase n = DataBase(email: txemail, nome: "Teste", img: "oi");
+                await ();*/
                 var n = Navegacao();
                 Navigator.pop(context);
                 n.paraPGStatusFreio(context);

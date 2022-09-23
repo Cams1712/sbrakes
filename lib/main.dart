@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:sbrakes/navegacao/navegacao.dart';
+import 'package:sbrakes/navegation/navegacao.dart';
 
 main() => runApp(PgStatusFreio());
 
