@@ -1,14 +1,8 @@
 // ignore_for_file: prefer_final_fields, use_key_in_widget_constructors, file_names
-import 'dart:async';
-import 'package:flutter/widgets.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import 'package:sbrakes/database/database.dart';
 import 'package:sbrakes/navegation/navegacao.dart';
-import 'package:sbrakes/main.dart';
 
 class PgLogin extends StatefulWidget {
   @override

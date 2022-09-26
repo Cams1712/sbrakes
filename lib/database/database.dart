@@ -1,10 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'dart:async';
-
-import 'package:flutter/widgets.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
-
 class DataBase {
   final String nome;
   final String email;
